@@ -1,0 +1,8 @@
+/* css stylesheet */
+H1 { color:red;}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

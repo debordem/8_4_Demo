@@ -1,25 +1,105 @@
 <!DOCTYPE html>
-<HTML>
-<HEAD>
-  <TITLE> My first.... webpage </TITLE>
-  <LINK href="styles.css" rel="stylesheet" type="text/css"></LINK>
-</HEAD>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
 
-<BODY>
-  <!-- Navigation -->
-  <UL>
-    <LI><a href="index.html">Home Page</a></LI>
-    <LI><a href="my_dog.html">My Dog</a></LI>
-    <LI><a href="my_car.html">My Car</a></LI>
-  </UL>
-  <!-- Navigation -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <H1> This is my first Web site.... whoo hoo!!! </H1>
-  <H2> Are you not impressed? </H2>
-  <H3> Not really... no pictures </H3>
+</head>
+
+<style>
+body {
+
+	background-image: url('grunge_patterns.jpg');
+	background-attachment: fixed;
+	color: #333;
+}
+.box {
+	border-radius: 3px;
+	background: rgba(101, 101, 101, 0.7); margin: auto; padding: 12px;
+}
+.lightbox {
+	zoom: 1.5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(10, 10, 10, 0.8);
+	text-align: center;
+	margin: auto;
+
+}
+div.horizontal {
+	display: flex;
+	justify-content: center;
+	height: 100%;
+}
+div.vertical {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+::-webkit-input-placeholder {
+   color: #955;
+   text-align: center;
+}
+::-moz-placeholder {
+   color: #955;
+   text-align: center;
+}
+:-ms-input-placeholder {
+   color: #955;
+   text-align: center;
+}
+</style>
+
+<body>
+
+	<div id="loginbox" class="lightbox" >
+		<div class="horizontal">
+			<div class="vertical">
+				<div class="box">
+					<input style="margin: 16px; text-align: center;" id="password" type="password" placeholder="password" /> <br />
+					<button id="loginbutton" type="button">Enter</button>
+					<p id="wrongPassword" style="display: none">wrong password</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 
-</BODY>
+	<script src="js/sha1.js"></script>
+	 
 
-</HTML>
+	<script type="text/javascript">
+	"use strict";
+	function loadPage(pwd) {
+
+		
+		var hash= pwd;
+		hash = CryptoJS.SHA1(pwd);
+		var url= hash + "/index.html";
+		console.log(url);
+
+		window.location= url;
+	}
+
+	$("#loginbutton").on("click", function() {
+		loadPage($("#password").val());
+	});
+	$("#password").keypress(function(e) {
+		if (e.which == 13) {
+
+			loadPage($("#password").val());
+		}
+	});
+	$("#password").focus();
+
+	</script>
+
+</body>
+</html>
